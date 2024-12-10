@@ -5,6 +5,6 @@ buzzer = Buzzer(17)
 
 print("Pi is on")
 
-while True:
+for i in range(10):
     Buzzer.beep()
 
