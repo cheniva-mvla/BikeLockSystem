@@ -1,10 +1,22 @@
-from gpiozero import Buzzer
-from time import sleep 
+import RPi.GPIO as GPIO         
+from time import sleep          
 
-buzzer = Buzzer(17)
+pin = 25                     
 
-print("Pi is on")
+GPIO.setmode(GPIO.BCM)         
+GPIO.setwarnings(False)        
+GPIO.setup(pin, GPIO.OUT)   
 
-for i in range(10):
-    Buzzer.beep()
+def turnOnPower():
+    GPIO.output(pin, GPIO.HIGH)  
+    print("Powering Pin " + pin)      
 
+def turnOffPower():
+    GPIO.output(pin, GPIO.LOW)    
+    print("Unpowering Pin " + pin)      
+
+while True:                         
+    turnOnPower()
+    sleep(1)     
+    turnOffPower()
+    sleep(1)
