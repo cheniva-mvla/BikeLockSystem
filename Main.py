@@ -9,11 +9,11 @@ GPIO.setup(pin, GPIO.OUT)
 
 def turnOnPower():
     GPIO.output(pin, GPIO.HIGH)  
-    print("Powering Pin " + pin)      
+    print("Powering Pin " + str(pin))      
 
 def turnOffPower():
     GPIO.output(pin, GPIO.LOW)    
-    print("Unpowering Pin " + pin)      
+    print("Unpowering Pin " + str(pin))      
 
 while True:                         
     turnOnPower()
