@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO         
-from time import sleep          
+from time import sleep       
+import picamera   
 
 pin = 25                     
 
@@ -15,8 +16,17 @@ def TurnPowerOnAndOff(bool):
         GPIO.output(pin, GPIO.LOW)    
         print("Unpowering Pin " + str(pin))    
 
-while True:                         
-    TurnPowerOnAndOff(True)
-    sleep(1)     
-    TurnPowerOnAndOff(False)
-    sleep(1)
+def PowerPin25():
+    while True:                         
+        TurnPowerOnAndOff(True)
+        sleep(1)     
+        TurnPowerOnAndOff(False)
+        sleep(1)
+
+with picamera.Picamera() as camera:
+    camera.resolution = (1024, 768)
+    camera.start_preview()
+
+    sleep(2)
+
+    camera.capture('BikeLockImage.jpg')
