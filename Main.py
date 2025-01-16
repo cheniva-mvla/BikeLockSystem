@@ -1,7 +1,11 @@
+#Libaries and Services
 import RPi.GPIO as GPIO         
 from time import sleep       
-import picamera   
+from picamera2 import Picamera2, Preview
+from libcamera import Transform 
 
+
+#--------------GPIO setup 
 pin = 25                     
 
 GPIO.setmode(GPIO.BCM)         
@@ -23,10 +27,9 @@ def PowerPin25():
         TurnPowerOnAndOff(False)
         sleep(1)
 
-with picamera.Picamera() as camera:
-    camera.resolution = (1024, 768)
-    camera.start_preview()
-
-    sleep(2)
-
-    camera.capture('BikeLockImage.jpg')
+#----------Camera Setup
+picam2 = Picamera2()
+picam2.start_preview(Preview.QTGL)
+picam2.start()
+sleep(30)
+picam2.close()
