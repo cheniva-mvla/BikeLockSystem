@@ -30,6 +30,11 @@ def PowerPin25():
         sleep(1)
 
 picam2 = Picamera2()
+picam2.start_preview(Preview)
+
+preview_config = picam2.create_preview_configuration()
+picam2.configure(preview_config)
+
 picam2.start_and_record_video("TestBikeLockVideo.mp4", duration = 10, show_preview = True) #records a 10 second video
 picam2.close()
 
