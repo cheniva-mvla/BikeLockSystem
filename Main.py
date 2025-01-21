@@ -4,14 +4,17 @@ from time import sleep
 from picamera2 import Picamera2, Preview
 from libcamera import Transform 
 
-
 #--------------GPIO setup 
 pin = 25                     
 
 GPIO.setmode(GPIO.BCM)         
 GPIO.setwarnings(False)        
 GPIO.setup(pin, GPIO.OUT)   
+#----------Camera Setup
+picam2 = Picamera2()
 
+
+#---------Functions
 def TurnPowerOnAndOff(bool):
     if bool: 
         GPIO.output(pin, GPIO.HIGH)  
@@ -27,9 +30,8 @@ def PowerPin25():
         TurnPowerOnAndOff(False)
         sleep(1)
 
-#----------Camera Setup
-picam2 = Picamera2()
-picam2.start_preview(Preview.QTGL)
-picam2.start()
-sleep(30)
-picam2.close()
+def RecordTenSecondVideo(): 
+    picam2.start_and_record_video("TestBikeLockVideo.mp4", duration = 10, show_preview = True) #records a 10 second video
+    picam2.close()
+
+RecordTenSecondVideo()
