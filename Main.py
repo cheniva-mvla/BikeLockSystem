@@ -29,9 +29,8 @@ def PowerPin25():
         TurnPowerOnAndOff(False)
         sleep(1)
 
-def RecordTenSecondVideo(): 
-    picam2 = Picamera2()
-    picam2.start_and_record_video("TestBikeLockVideo.mp4", duration = 10, show_preview = True) #records a 10 second video
-    picam2.close()
+picam2 = Picamera2()
+picam2.start_and_record_video("TestBikeLockVideo.mp4", duration = 10, show_preview = True) #records a 10 second video
+picam2.close()
 
-RecordTenSecondVideo()
+#RecordTenSecondVideo()
