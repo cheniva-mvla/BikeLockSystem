@@ -11,7 +11,6 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)        
 GPIO.setup(pin, GPIO.OUT)   
 #----------Camera Setup
-picam2 = Picamera2()
 
 
 #---------Functions
@@ -31,6 +30,7 @@ def PowerPin25():
         sleep(1)
 
 def RecordTenSecondVideo(): 
+    picam2 = Picamera2()
     picam2.start_and_record_video("TestBikeLockVideo.mp4", duration = 10, show_preview = True) #records a 10 second video
     picam2.close()
 
