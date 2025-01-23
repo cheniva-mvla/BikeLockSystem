@@ -28,6 +28,13 @@ class BLGPIO:
 
     def toggle(pin):
         GPIO.output(pin, not GPIO.input(pin))
+
+    def blink(pin, times):
+        for i in times:
+            toggle(pin)
+            sleep(1)
+            toggle(pin)
+            sleep(1)
               
 
 
