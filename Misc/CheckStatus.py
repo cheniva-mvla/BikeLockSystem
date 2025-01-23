@@ -12,7 +12,6 @@ GPIO.setwarnings(False)
 GPIO.setup(pin, GPIO.OUT)   
 #----------Camera Setup
 
-
 #---------Functions
 def TurnPowerOnAndOff(bool):
     if bool: 
@@ -29,13 +28,14 @@ def PowerPin25():
         TurnPowerOnAndOff(False)
         sleep(1)
 
-picam2 = Picamera2()
-picam2.start_preview(Preview)
+def RecordTenSecondVideo():
+    picam2 = Picamera2()
+    picam2.start_preview(Preview)
 
-preview_config = picam2.create_preview_configuration()
-picam2.configure(preview_config)
+    #preview_config = picam2.create_preview_configuration()
+    #picam2.configure(preview_config)
 
-picam2.start_and_record_video("TestBikeLockVideo.mp4", duration = 10, show_preview = True) #records a 10 second video
-picam2.close()
+    picam2.start_and_record_video("TestBikeLockVideo.mp4", duration = 10, show_preview = True) #records a 10 second video
+    picam2.close()
 
 #RecordTenSecondVideo()
