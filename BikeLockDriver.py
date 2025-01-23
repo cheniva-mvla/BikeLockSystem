@@ -7,6 +7,8 @@ from Classes import BikeLockCamera
 
 #----- Variable Setup
 BLGPIO = BikeLockGPIO.BLGPIO
-BLCamera = BikeLockCamera.BLGPIO
+BLCamera = BikeLockCamera.BLCamera
 
 print(BLGPIO.__str__(BLGPIO))
+print(BLCamera.__str__(BLGPIO))
+
