@@ -1,25 +1,42 @@
 #--------------GPIO FUNCTIONALITY------------#
 
 #-----Libraries
-#import RPi.GPIO as GPIO      
+safeLock = False 
+if safeLock:
+    import RPi.GPIO as GPIO   
+    from time import sleep   
+else:
+    pass
 
 #-Class
 class BLGPIO:
-#----- Pin Setup
 
-    #----- Init 
+    #Note: Pins should have a dictionary setup
+    '''
+    It should have the format: "Function": GPIO Number
+    i.e.
+    Pins = {
+    "Alarm": 25
+    "LED": 17
+    etc...
+    }
+    '''
+ #----- Init 
     def __init__(self, pins):
-        '''
-        GPIO.setmode(GPIO.BCM)         
-        GPIO.setwarnings(False)       
-        '''
         self.pins = pins
-        # GPIO.setup(pins, GPIO.OUT, GPIO.LOW)
+        if safeLock: 
+            GPIO.setmode(GPIO.BCM)         
+            GPIO.setwarnings(False)       
+            GPIO.setup(pins, GPIO.OUT, GPIO.LOW)
 
+#---- Getters and Setters
+    def getPins(self):
+        return self.pins 
     
-    def __str__(self):
-        return "I am GPIO"
-
+    def getSafeLock(self):
+        return safeLock
+       
+#---- Logic Functions
     def turnOn(pin):
         GPIO.output(pin, GPIO.HIGH)
 
@@ -29,12 +46,17 @@ class BLGPIO:
     def toggle(pin):
         GPIO.output(pin, not GPIO.input(pin))
 
-    def blink(pin, times):
+    def blink(self, pin, times):
         for i in times:
-            toggle(pin)
+            self.toggle(pin)
+            print("LED TOGGLED ON")
             sleep(1)
-            toggle(pin)
+            self.toggle(pin)
+            print("LED TOGGLED OFF")
             sleep(1)
-              
+#---- Misc
+    def __str__(self):
+        return "I am GPIO"
+                 
 
 
