@@ -1,7 +1,7 @@
 #--------------BOARD CHECKUP FUNCTIONALITY------------#
 
 #Libaries and Services
-safeLock = False
+safeLock = True
 if safeLock:
     import RPi.GPIO as GPIO         
     from time import sleep       
@@ -39,4 +39,5 @@ def checkCamera():
     picam2.start()
     sleep(30)
     picam2.close() 
+
 

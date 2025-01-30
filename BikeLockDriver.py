@@ -22,7 +22,7 @@ pins = {
 BLGPIO.__init__(BLGPIO, pins)
 
 #------ Status Check
-safetyCheck = False 
+safetyCheck = True 
 if safetyCheck: 
     BLSafteyCheckup.checkPins()
     BLSafteyCheckup.checkCamera()
