@@ -25,7 +25,7 @@ BLGPIO.__init__(BLGPIO, pins)
 safetyCheck = True 
 if safetyCheck: 
     BLSafteyCheckup.checkPins()
-    BLSafteyCheckup.record10SecondVideo()
+    #BLSafteyCheckup.record10SecondVideo()
 
 #------ Logic
 #- safeLock check. True = On; False = Off
