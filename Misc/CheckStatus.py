@@ -40,4 +40,9 @@ def checkCamera():
     sleep(30)
     picam2.close() 
 
+def record10SecondVideo():
+    picam2 = Picamera2()
+    picam2.start_and_record_video("Test.mp4", duration = 10, show_preview = True)
+    picam2.close() 
+
 
