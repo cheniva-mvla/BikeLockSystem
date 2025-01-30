@@ -26,9 +26,9 @@ BLGPIO.__init__(BLGPIO, pins)
 #------ Status Check
 safetyCheck = True 
 if safetyCheck: 
-    if __name__ == '__main__':
-        Thread(target=BLSafteyCheckup.checkPins).start
-        Thread(target=BLSafteyCheckup.record10SecondVideo).start
+    if __name__ == ' __main__':
+        Thread(target=BLSafteyCheckup.checkPins).start()
+        Thread(target=BLSafteyCheckup.record10SecondVideo).start()
     #BLSafteyCheckup.checkPins()
     #BLSafteyCheckup.checkCamera()
     #BLSafteyCheckup.record10SecondVideo()
