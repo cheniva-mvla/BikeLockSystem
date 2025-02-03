@@ -45,3 +45,23 @@ print() #whitespace
 
 print(BLCamera.__str__(BLGPIO))
 
+#--------main loop------------
+Alert = False
+detect = False
+reset = False
+while(True):
+    if detect:
+        trigger()
+        detect = False
+        Alert = True
+    elif !Alert:
+        standby()
+    if reset:
+        Alert = False
+        detect = False
+    if #function to check for components that should trigger alarm:
+        detect = True
+    
+
+
+
