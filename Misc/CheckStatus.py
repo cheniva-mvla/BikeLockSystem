@@ -1,14 +1,12 @@
 #--------------BOARD CHECKUP FUNCTIONALITY------------#
 
 #Libaries and Services
-safeLock = True
+safeLock = False 
 if safeLock:
     import RPi.GPIO as GPIO         
-    from time import sleep       
     from picamera2 import Picamera2, Preview
     from libcamera import Transform 
-else:
-    from time import sleep 
+from time import sleep 
 """
 #Checks if the physical board is working
     - check pin input/output

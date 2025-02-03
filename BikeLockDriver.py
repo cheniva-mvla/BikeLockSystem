@@ -24,7 +24,7 @@ pins = {
 BLGPIO.__init__(BLGPIO, pins)
 
 #------ Status Check
-safetyCheck = True 
+safetyCheck = False  
 if safetyCheck: 
     Thread(target = BLSafteyCheckup.checkPins).start()
     Thread(target = BLSafteyCheckup.record10SecondVideo).start()
