@@ -54,6 +54,10 @@ class BLGPIO:
             self.toggle(pin)
             print("LED TOGGLED OFF")
             sleep(1)
+    
+    def detectCircut(self, pin):
+        state = GPIO.input(pin)
+        return state #False if circut broken/D.N.E. True if circut completed. 
 #---- Misc
     def __str__(self):
         return "I am GPIO"

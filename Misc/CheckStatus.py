@@ -16,14 +16,14 @@ from time import sleep
 **Currently using old main file logic
 """
 
-def checkPins():
+def checkPins(repeatAmount):
     pin = 25               
 
     GPIO.setmode(GPIO.BCM)         
     GPIO.setwarnings(False)        
     GPIO.setup(pin, GPIO.OUT)   
 
-    for i in range(10):
+    for i in range(repeatAmount):
         GPIO.output(pin, GPIO.HIGH)    
         print("LED TOGGLED ON")
         sleep(1)
