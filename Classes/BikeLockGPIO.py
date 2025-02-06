@@ -57,7 +57,7 @@ class BLGPIO:
             sleep(1)
     
     def detectCircut(self, pin):
-        state = GPIO.output(pin)
+        state = GPIO.output(pin, GPIO.LOW)
         return state #False if circut broken/D.N.E. True if circut completed. 
 #---- Misc
     def __str__(self):
