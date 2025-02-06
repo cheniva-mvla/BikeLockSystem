@@ -58,7 +58,7 @@ def standby(pin):
     return not BLGPIO.detectCircut(BLGPIO, pin)
 
 #--------main loop----------
-Alert = False
+alert = False
 detect = False
 reset = False
 standByTime = 1
@@ -68,12 +68,12 @@ while(False):
     if detect: #trigger mode
         trigger()
         detect = False
-        Alert = True
-    elif not Alert: #standby mode
+        alert = True
+    elif not alert: #standby mode
         detect = standby(25) #if standby is false, no alarm should be raised and the circut is completed. True if circut is broken. 
 
     if reset:
-        Alert = False
+        alert = False
         detect = False
 
     sleep(standByTime)
