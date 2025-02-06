@@ -18,7 +18,9 @@ BLSafteyCheckup = CheckStatus #Checks overall board functionality
 pins = {
     "Alarm": 25,
     "LED": 17,
-    "Shackle": 30, #change later, currently random pin
+    "Shackle1": 30, #change later, currently random pin
+    "Shackle2": 31, #change later, currently random pin
+
     }
 
 #------ Instantiate Classes
@@ -31,39 +33,44 @@ if safetyCheck:
     Thread(target = BLSafteyCheckup.record10SecondVideo).start()
 
 #================ Logic =================#
-#- safeLock check. True = On; False = Off
-print("GPIO safeLock: " + str(not BLGPIO.getSafeLock(BLGPIO)))
-print("Camera safeLock: " + str(not BLCamera.getSafeLock(BLGPIO)))
-print() #whitespace
 
-#- print out information
-print(BLGPIO.__str__(BLGPIO))
-print(BLGPIO.getPins(BLGPIO))
-print() #whitespace
 
-print(BLCamera.__str__(BLGPIO))
 
 #------ Functions
-    
+def printInfo():
+    #- safeLock check. True = On; False = Off
+    print("GPIO safeLock: " + str(not BLGPIO.getSafeLock(BLGPIO)))
+    print("Camera safeLock: " + str(not BLCamera.getSafeLock(BLGPIO)))
+    print() #whitespace
+
+    #- print out information
+    print(BLGPIO.__str__(BLGPIO))
+    print(BLGPIO.getPins(BLGPIO))
+    print() #whitespace
+
+    print(BLCamera.__str__(BLGPIO))
+
 def trigger(): 
     Thread(target = BLGPIO.blink, args = (BLGPIO, 25, 10,)).start()
     Thread(target = BLCamera.RecordTenSecondVideo, args = (BLCamera,)).start() 
 
-def standby():
-    return not BLGPIO.detectCircut()
+def standby(pin):
+    return not BLGPIO.detectCircut(BLGPIO, pin)
 
 #--------main loop----------
 Alert = False
 detect = False
 reset = False
 standByTime = 1
-while(True):
+#printInfo()
+print(standby(25))
+while(False):
     if detect: #trigger mode
         trigger()
         detect = False
         Alert = True
     elif not Alert: #standby mode
-        detect = standby() #if standby is false, no alarm should be raised and the circut is completed. True if circut is broken. 
+        detect = standby(25) #if standby is false, no alarm should be raised and the circut is completed. True if circut is broken. 
 
     if reset:
         Alert = False

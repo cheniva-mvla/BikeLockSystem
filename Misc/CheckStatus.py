@@ -1,7 +1,7 @@
 #--------------BOARD CHECKUP FUNCTIONALITY------------#
 
 #Libaries and Services
-safeLock = False 
+safeLock = True 
 if safeLock:
     import RPi.GPIO as GPIO         
     from picamera2 import Picamera2, Preview

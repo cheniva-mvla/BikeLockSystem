@@ -1,7 +1,7 @@
 #--------------GPIO FUNCTIONALITY------------#
 
 #-----Libraries
-safeLock = False 
+safeLock = True 
 if safeLock:
     import RPi.GPIO as GPIO   
     from time import sleep   

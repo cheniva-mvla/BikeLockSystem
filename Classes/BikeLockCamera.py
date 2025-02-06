@@ -1,5 +1,5 @@
 #--------------CAMERA FUNCTIONALITY------------#
-safeLock = False #Toggle for working on and off Raspberry Pi. 
+safeLock = True #Toggle for working on and off Raspberry Pi. 
 
 #-----Libraries
 if safeLock:
