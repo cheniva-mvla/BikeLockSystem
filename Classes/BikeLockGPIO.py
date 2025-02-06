@@ -26,9 +26,10 @@ class BLGPIO:
         self.pins = pins
         if safeLock: 
             GPIO.setmode(GPIO.BCM)         
-            GPIO.setwarnings(False)       
-            GPIO.setup(25, GPIO.OUT)
-            GPIO.output(25, GPIO.LOW)
+            GPIO.setwarnings(False)   
+            for key, value in pins.items(): 
+                GPIO.setup(key, GPIO.OUT)
+                GPIO.output(key, GPIO.LOW)
 
 #---- Getters and Setters
     def getPins(self):
