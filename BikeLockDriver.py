@@ -63,7 +63,7 @@ detect = False
 reset = False
 standByTime = 1
 #printInfo()
-print(standby(25))
+print(standby(17))
 while(False):
     if detect: #trigger mode
         trigger()
