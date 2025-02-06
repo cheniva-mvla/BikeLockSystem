@@ -28,8 +28,12 @@ class BLGPIO:
             GPIO.setmode(GPIO.BCM)         
             GPIO.setwarnings(False)   
             for key, value in pins.items(): 
-                GPIO.setup(value, GPIO.OUT)
-                GPIO.output(value, GPIO.LOW)
+                if value == 17:
+                    GPIO.setup(value, GPIO.IN)
+                    GPIO.input(value)
+                else:
+                    GPIO.setup(value, GPIO.OUT)
+                    GPIO.output(value, GPIO.LOW)
 
 #---- Getters and Setters
     def getPins(self):
