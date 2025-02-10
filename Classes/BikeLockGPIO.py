@@ -21,14 +21,18 @@ class BLGPIO:
     etc...
     }
     '''
+
  #----- Init 
     def __init__(self, pins):
+        inputPin1 = 19
+        inputPin2 = 26
+
         self.pins = pins
         if safeLock: 
             GPIO.setmode(GPIO.BCM)         
             GPIO.setwarnings(False)   
             for key, value in pins.items(): 
-                if value == 17:
+                if key == "Input":
                     GPIO.setup(value, GPIO.IN)
                     GPIO.input(value)
                 else:
@@ -61,9 +65,9 @@ class BLGPIO:
             print("LED TOGGLED OFF")
             sleep(1)
     
-    def detectCircut(self, pin):
-        GPIO.output(25, GPIO.HIGH)
-        state = GPIO.input(pin)
+    def detectCircut(self, inputPin, outputPin):
+        GPIO.output(outputPin, GPIO.HIGH)
+        state = GPIO.input(inputPin)
         return state #False if circut broken/D.N.E. True if circut completed. 
 #---- Misc
     def __str__(self):

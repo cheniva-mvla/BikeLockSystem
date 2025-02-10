@@ -16,11 +16,12 @@ BLCamera = BikeLockCamera.BLCamera #BikeLock Camera
 BLSafteyCheckup = CheckStatus #Checks overall board functionality 
 
 pins = {
-    "Alarm": 25,
-    "LED": 17,
-    "Shackle1": 30, #change later, currently random pin
-    "Shackle2": 31, #change later, currently random pin
-
+    "Output": 25, #Alarm
+    "Output": 17, #LED
+    "Output": 16, #Shackle 1 Output
+    "Output": 20, #Shackle 2 Output
+    "Input": 19, #Shackle 1 Input
+    "Input": 26, #Shackle 2 Input
     }
 
 #------ Instantiate Classes
@@ -54,8 +55,8 @@ def trigger():
     Thread(target = BLGPIO.blink, args = (BLGPIO, 25, 10,)).start()
     Thread(target = BLCamera.RecordTenSecondVideo, args = (BLCamera,)).start() 
 
-def standby(pin):
-    return not BLGPIO.detectCircut(BLGPIO, pin)
+def standby(inputPin, OutputPin):
+    return not BLGPIO.detectCircut(BLGPIO, inputPin, OutputPin)
 
 #--------main loop----------
 alert = False
@@ -63,7 +64,9 @@ detect = False
 reset = False
 standByTime = 1
 #printInfo()
-print(standby(17))
+print("Shackle wire one circut completed:" + str(standby(19, 16)))
+print("Shackle wire two circut completed:" + str(standby(26, 20)))
+
 while(False):
     if detect: #trigger mode
         trigger()
