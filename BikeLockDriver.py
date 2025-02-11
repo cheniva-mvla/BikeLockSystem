@@ -21,7 +21,8 @@ pins = {
     "Output": 16, #Shackle 1 Output
     "Output": 20, #Shackle 2 Output
     "Input": 19, #Shackle 1 Input
-    "Input": 26, #Shackle 2 Input
+    #"Input": 26, #Shackle 2 Input
+
     }
 
 #------ Instantiate Classes
@@ -65,7 +66,7 @@ reset = False
 standByTime = 1
 #printInfo()
 print("Shackle wire one circut completed:" + str(standby(19, 16)))
-print("Shackle wire two circut completed:" + str(standby(26, 20)))
+#print("Shackle wire two circut completed:" + str(standby(26, 20)))
 
 while(False):
     if detect: #trigger mode
