@@ -29,13 +29,11 @@ class BLGPIO:
             GPIO.setmode(GPIO.BCM)         
             GPIO.setwarnings(False)   
             for key, value in pins.items(): 
-                if key == "Input":
-                    print(str(value) + "is an input pin")
-                    GPIO.setup(value, GPIO.IN)
+                if value == "Input":
+                    GPIO.setup(key, GPIO.IN)
                 else:
-                    print(str(value) + "is an output pin")
-                    GPIO.setup(value, GPIO.OUT)
-                    GPIO.output(value, GPIO.LOW)
+                    GPIO.setup(key, GPIO.OUT)
+                    GPIO.output(key, GPIO.LOW)
 
 #---- Getters and Setters
     def getPins(self):

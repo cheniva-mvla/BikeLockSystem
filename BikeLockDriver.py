@@ -16,12 +16,13 @@ BLCamera = BikeLockCamera.BLCamera #BikeLock Camera
 BLSafteyCheckup = CheckStatus #Checks overall board functionality 
 
 pins = {
-    "Output": 25, #Alarm
-    "Output": 17, #LED
-    "Output": 16, #Shackle 1 Output
-    "Output": 20, #Shackle 2 Output
-    "Input": 19, #Shackle 1 Input
-    "Input": 26, #Shackle 2 Input
+    25: "Output", #Alarm
+    17: "Output", #LED
+    
+    16: "Output", #Shackle 1 Output
+    20: "Output", #Shackle 2 Output
+    19: "Input", #Shackle 1 Input
+    26: "Input", #Shackle 2 Input
 
     }
 
