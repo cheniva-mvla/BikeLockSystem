@@ -30,9 +30,10 @@ class BLGPIO:
             GPIO.setwarnings(False)   
             for key, value in pins.items(): 
                 if key == "Input":
-                    print(value)
+                    print(str(value) + "is an input pin")
                     GPIO.setup(value, GPIO.IN)
                 else:
+                    print(str(value) + "is an output pin")
                     GPIO.setup(value, GPIO.OUT)
                     GPIO.output(value, GPIO.LOW)
 
