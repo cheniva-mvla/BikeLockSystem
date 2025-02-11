@@ -24,17 +24,14 @@ class BLGPIO:
 
  #----- Init 
     def __init__(self, pins):
-        inputPin1 = 19
-        inputPin2 = 26
-
         self.pins = pins
         if safeLock: 
             GPIO.setmode(GPIO.BCM)         
             GPIO.setwarnings(False)   
             for key, value in pins.items(): 
                 if key == "Input":
+                    print(value)
                     GPIO.setup(value, GPIO.IN)
-                    GPIO.input(value)
                 else:
                     GPIO.setup(value, GPIO.OUT)
                     GPIO.output(value, GPIO.LOW)
