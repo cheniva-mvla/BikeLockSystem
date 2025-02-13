@@ -19,10 +19,10 @@ pins = {
     25: "Output", #Alarm
     17: "Output", #LED
     
-    16: "Output", #Shackle 1 Output
-    20: "Output", #Shackle 2 Output
-    19: "Input", #Shackle 1 Input
-    26: "Input", #Shackle 2 Input
+    23: "Output", #Shackle 1 Output
+    24: "Output", #Shackle 2 Output
+    27: "Input", #Shackle 1 Input
+    22: "Input", #Shackle 2 Input
 
     }
 
@@ -55,7 +55,7 @@ def printInfo():
 
 def trigger(): 
     Thread(target = BLGPIO.blink, args = (BLGPIO, 25, 10,)).start()
-    Thread(target = BLCamera.RecordTenSecondVideo, args = (BLCamera,)).start() 
+    #Thread(target = BLCamera.RecordTenSecondVideo, args = (BLCamera,)).start() 
 
 def standby(inputPin, OutputPin):
     return not BLGPIO.detectCircut(BLGPIO, inputPin, OutputPin)
@@ -66,8 +66,8 @@ detect = False
 reset = False
 standByTime = 1
 #printInfo()
-print("Shackle wire one circut completed:" + str(standby(19, 16)))
-print("Shackle wire two circut completed:" + str(standby(26, 20)))
+print("Shackle wire one circut completed:" + str(not standby(23, 27)))
+print("Shackle wire two circut completed:" + str(not standby(24, 22)))
 
 while(False):
     if detect: #trigger mode
