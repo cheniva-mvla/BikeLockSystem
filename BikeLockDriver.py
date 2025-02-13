@@ -66,8 +66,8 @@ detect = False
 reset = False
 standByTime = 1
 #printInfo()
-print("Shackle wire one circut completed:" + str(not standby(23, 27)))
-print("Shackle wire two circut completed:" + str(not standby(24, 22)))
+print("Shackle wire one circut completed:" + str(not standby(27, 23)))
+print("Shackle wire two circut completed:" + str(not standby(22, 24)))
 
 while(False):
     if detect: #trigger mode
