@@ -67,7 +67,7 @@ class BLGPIO:
         return state #False if circut broken/D.N.E. True if circut completed. 
 #---- Misc
     def __str__(self):
-        return "I am GPIO"
+        return "GPIO CLASS"
                  
 
 

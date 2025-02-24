@@ -36,4 +36,4 @@ class BLCamera:
 
 #----- Misc
     def __str__(self):
-        return "I am Camera"
+        return "CAMERA CLASS"

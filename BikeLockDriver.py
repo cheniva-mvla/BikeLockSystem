@@ -15,15 +15,37 @@ BLGPIO = BikeLockGPIO.BLGPIO #BikeLock GPIO
 BLCamera = BikeLockCamera.BLCamera #BikeLock Camera
 BLSafteyCheckup = CheckStatus #Checks overall board functionality 
 
-pins = {
-    25: "Output", #Alarm
-    17: "Output", #LED
-    
-    23: "Output", #Shackle 1 Output
-    24: "Output", #Shackle 2 Output
-    27: "Input", #Shackle 1 Input
-    22: "Input", #Shackle 2 Input
+#----- Constants 
+#Shackles
+shackleOneOutput = 23
+shackleOneInput = 27
+shackleTwoOutput = 24
+shackleTwoInput = 22 
 
+#Physical Outouts
+AlarmOutput = 25
+LEDOutput = 17
+
+#Misc
+RFIDKey = None #change later 
+AccelerometorInput = None #change later 
+
+#FSM Vars
+alert = False
+detect = False
+reset = False
+standByTime = 1
+
+
+pins = {
+    AlarmOutput: "Output", #Alarm
+    LEDOutput: "Output", #LED
+
+    shackleOneOutput: "Output", #Shackle 1 Output
+    shackleTwoOutput: "Output", #Shackle 2 Output
+
+    shackleOneInput: "Input", #Shackle 1 Input
+    shackleTwoInput: "Input", #Shackle 2 Input
     }
 
 #------ Instantiate Classes
@@ -36,9 +58,6 @@ if safetyCheck:
     Thread(target = BLSafteyCheckup.record10SecondVideo).start()
 
 #================ Logic =================#
-
-
-
 #------ Functions
 def printInfo():
     #- safeLock check. True = On; False = Off
@@ -48,34 +67,32 @@ def printInfo():
 
     #- print out information
     print(BLGPIO.__str__(BLGPIO))
+    print("Pin Information: ")
     print(BLGPIO.getPins(BLGPIO))
     print() #whitespace
 
     print(BLCamera.__str__(BLGPIO))
 
+def reportPinConnectivity():
+    print("Shackle wire one circut completed:" + str(not standby(shackleOneInput, shackleOneOutput)))
+    print("Shackle wire two circut completed:" + str(not standby(shackleTwoInput, shackleTwoOutput)))
+
 def trigger(): 
-    Thread(target = BLGPIO.blink, args = (BLGPIO, 25, 10,)).start()
-    #Thread(target = BLCamera.RecordTenSecondVideo, args = (BLCamera,)).start() 
+    Thread(target = BLGPIO.blink, args = (BLGPIO, LEDOutput, 10,)).start()
+    Thread(target = BLCamera.RecordTenSecondVideo, args = (BLCamera,)).start() 
 
 def standby(inputPin, OutputPin):
     return not BLGPIO.detectCircut(BLGPIO, inputPin, OutputPin)
 
 #--------main loop----------
-alert = False
-detect = False
-reset = False
-standByTime = 1
 #printInfo()
-print("Shackle wire one circut completed:" + str(not standby(27, 23)))
-print("Shackle wire two circut completed:" + str(not standby(22, 24)))
-
 while(False):
     if detect: #trigger mode
         trigger()
         detect = False
         alert = True
     elif not alert: #standby mode
-        detect = standby(25) #if standby is false, no alarm should be raised and the circut is completed. True if circut is broken. 
+        detect = standby(shackleOneInput, shackleOneOutput) or standby(shackleTwoInput, shackleTwoOutput) #if standby is false, no alarm should be raised and the circut is completed. True if circut is broken. 
 
     if reset:
         alert = False
