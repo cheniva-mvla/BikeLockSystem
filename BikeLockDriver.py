@@ -86,6 +86,7 @@ def standby(inputPin, OutputPin):
 
 #--------main loop----------
 #printInfo()
+reportPinConnectivity()
 while(False):
     if detect: #trigger mode
         trigger()
