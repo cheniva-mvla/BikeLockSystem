@@ -93,9 +93,9 @@ def checkDetection():
     
 #--------main loop----------
 #printInfo()
-#reportPinConnectivity()
+reportPinConnectivity()
 #trigger()
-while(True):
+while(False):
     if detect: #trigger mode
         print("Alarm Triggered")
         trigger()
