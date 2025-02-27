@@ -53,7 +53,7 @@ class BLGPIO:
         GPIO.output(pin, not GPIO.input(pin))
 
     def blink(self, pin, times):
-        for i in times:
+        for i in range(times):
             self.toggle(pin)
             print("LED TOGGLED ON")
             sleep(1)
