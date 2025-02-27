@@ -82,7 +82,7 @@ def trigger():
     #Thread(target = BLCamera.RecordTenSecondVideo, args = (BLCamera,)).start() 
 
 def standby(inputPin, OutputPin):
-    return not BLGPIO.detectCircut(BLGPIO, inputPin, OutputPin)
+    return BLGPIO.detectCircut(BLGPIO, inputPin, OutputPin)
 
 def checkDetection():
     if not standby(shackleOneInput, shackleOneOutput):

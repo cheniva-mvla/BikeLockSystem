@@ -64,7 +64,7 @@ class BLGPIO:
     def detectCircut(self, inputPin, outputPin):
         GPIO.output(outputPin, GPIO.HIGH)
         state = GPIO.input(inputPin)
-        return state #False if circut broken/D.N.E. True if circut completed. 
+        return bool(state) #False if circut broken/D.N.E. True if circut completed. 
 #---- Misc
     def __str__(self):
         return "GPIO CLASS"
