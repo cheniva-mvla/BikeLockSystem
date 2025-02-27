@@ -74,28 +74,33 @@ def printInfo():
     print(BLCamera.__str__(BLGPIO))
 
 def reportPinConnectivity():
-    print("Shackle wire one circut completed:" + str(not standby(shackleOneInput, shackleOneOutput)))
-    print("Shackle wire two circut completed:" + str(not standby(shackleTwoInput, shackleTwoOutput)))
+    print("Shackle wire one circut completed:" + str(standby(shackleOneInput, shackleOneOutput)))
+    print("Shackle wire two circut completed:" + str(standby(shackleTwoInput, shackleTwoOutput)))
 
 def trigger(): 
     Thread(target = BLGPIO.blink, args = (BLGPIO, LEDOutput, 10,)).start()
     #Thread(target = BLCamera.RecordTenSecondVideo, args = (BLCamera,)).start() 
 
 def standby(inputPin, OutputPin):
-    return not BLGPIO.detectCircut(BLGPIO, inputPin, OutputPin)
+    return BLGPIO.detectCircut(BLGPIO, inputPin, OutputPin)
 
+def checkDetection():
+    if not standby(shackleOneInput, shackleOneOutput):
+        return False
+    
 #--------main loop----------
 #printInfo()
-#reportPinConnectivity()
+reportPinConnectivity()
 #trigger()
-while(True):
+while(False):
     if detect: #trigger mode
         print("Alarm Triggered")
         trigger()
         alert = True
+        detect = False
     elif not alert: #standby mode
         print("Standby")
-        detect = ((not standby(shackleOneInput, shackleOneOutput)) or (not standby(shackleTwoInput, shackleTwoOutput))) #if standby is false, no alarm should be raised and the circut is completed. True if circut is broken. 
+        detect = checkDetection() #if standby is false, no alarm should be raised and the circut is completed. True if circut is broken. 
         print("Detect Status: " + str(detect))
     if reset:
         alert = False
