@@ -34,7 +34,7 @@ AccelerometorInput = None #change later
 alert = False
 detect = False
 reset = False
-standByTime = 1
+standByTime = 2
 
 
 pins = {
@@ -88,7 +88,7 @@ def standby(inputPin, OutputPin):
 #printInfo()
 #reportPinConnectivity()
 trigger()
-while(False):
+while(True):
     if detect: #trigger mode
         print("Alarm Triggered")
         trigger()
