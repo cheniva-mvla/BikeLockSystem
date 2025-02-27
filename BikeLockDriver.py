@@ -96,7 +96,7 @@ while(True):
         alert = True
     elif not alert: #standby mode
         print("Standby")
-        detect = standby(shackleOneInput, shackleOneOutput) and standby(shackleTwoInput, shackleTwoOutput) #if standby is false, no alarm should be raised and the circut is completed. True if circut is broken. 
+        detect = not standby(shackleOneInput, shackleOneOutput) and not standby(shackleTwoInput, shackleTwoOutput) #if standby is false, no alarm should be raised and the circut is completed. True if circut is broken. 
 
     if reset:
         alert = False
