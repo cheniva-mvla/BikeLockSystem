@@ -86,10 +86,10 @@ def standby(inputPin, OutputPin):
 
 def checkDetection():
     if not standby(shackleOneInput, shackleOneOutput):
-        return False
+        return True
     if not standby(shackleTwoInput, shackleTwoOutput):
-        return False
-    return True 
+        return True
+    return False 
     
 #--------main loop----------
 #printInfo()
