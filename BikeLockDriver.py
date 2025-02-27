@@ -79,20 +79,23 @@ def reportPinConnectivity():
 
 def trigger(): 
     Thread(target = BLGPIO.blink, args = (BLGPIO, LEDOutput, 10,)).start()
-    Thread(target = BLCamera.RecordTenSecondVideo, args = (BLCamera,)).start() 
+    #Thread(target = BLCamera.RecordTenSecondVideo, args = (BLCamera,)).start() 
 
 def standby(inputPin, OutputPin):
     return not BLGPIO.detectCircut(BLGPIO, inputPin, OutputPin)
 
 #--------main loop----------
 #printInfo()
-reportPinConnectivity()
+#reportPinConnectivity()
+trigger()
 while(False):
     if detect: #trigger mode
+        print("Alarm Triggered")
         trigger()
         detect = False
         alert = True
     elif not alert: #standby mode
+        print("Standby")
         detect = standby(shackleOneInput, shackleOneOutput) or standby(shackleTwoInput, shackleTwoOutput) #if standby is false, no alarm should be raised and the circut is completed. True if circut is broken. 
 
     if reset:
