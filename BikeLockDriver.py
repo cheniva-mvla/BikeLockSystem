@@ -87,12 +87,15 @@ def standby(inputPin, OutputPin):
 def checkDetection():
     if not standby(shackleOneInput, shackleOneOutput):
         return False
+    if not standby(shackleTwoInput, shackleTwoOutput):
+        return False
+    return True 
     
 #--------main loop----------
 #printInfo()
-reportPinConnectivity()
+#reportPinConnectivity()
 #trigger()
-while(False):
+while(True):
     if detect: #trigger mode
         print("Alarm Triggered")
         trigger()
