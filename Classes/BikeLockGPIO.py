@@ -26,7 +26,6 @@ class BLGPIO:
     def __init__(self, pins):
         self.pins = pins
         if safeLock: 
-            GPIO.setmode(GPIO.BCM)         
             GPIO.setwarnings(False)   
             for key, value in pins.items(): 
                 if value == "Input":

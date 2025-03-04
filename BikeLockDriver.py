@@ -41,8 +41,15 @@ standByTime = 2
 
 
 pins = {
-    AlarmOutput: "Input", #Alarm
-  
+    AlarmOutput: "Output", #Alarm
+    LEDOutput: "Output", #LED
+
+    shackleOneOutput: "Output", #Shackle 1 Output
+    shackleTwoOutput: "Output", #Shackle 2 Output
+
+    shackleOneInput: "Input", #Shackle 1 Input
+    shackleTwoInput: "Input", #Shackle 2 Input
+
     }
 
 #------ Instantiate Classes

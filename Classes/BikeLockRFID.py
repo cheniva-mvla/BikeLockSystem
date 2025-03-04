@@ -11,7 +11,7 @@ rfid = SimpleMFRC522()
 bikeLockFobID = 785924227828
 bikeLockCardID = 703195382446
 class BLRFID:
-    #----- Init 
+    #----- Init     
     def __init__(self):
         pass 
     
