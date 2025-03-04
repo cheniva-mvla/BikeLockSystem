@@ -15,10 +15,11 @@ bikeLockCardID = 703195382446
 def readRFID():
     while True:
         id, text = rfid.read()
+        print(id)
+        print(text)
         if id == bikeLockFobID or id == bikeLockCardID: 
             print("Acess Granted")
             return 
-        print(id)
-        print(text)
+      
 
 readRFID()
