@@ -12,11 +12,13 @@ rfid = SimpleMFRC522()
 bikeLockFobID = 785924227828
 bikeLockCardID = 703195382446
 
-while True:
-    id, text = rfid.read()
-    print(id)
-    print(text)
-    print("got here")
-      
+def readRFID():
+    while True:
+        id, text = rfid.read()
+        if id == bikeLockFobID or id == bikeLockCardID: 
+            print("Acess Granted")
+            return 
+        print(id)
+        print(text)
 
 readRFID()
