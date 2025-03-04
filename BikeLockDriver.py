@@ -79,7 +79,7 @@ def reportPinConnectivity():
     print("Shackle wire two circut completed:" + str(standby(shackleTwoInput, shackleTwoOutput)))
 
 def trigger(): 
-    Thread(target = BLGPIO.blink, args = (BLGPIO, LEDOutput, 10,)).start()
+    Thread(target = BLGPIO.blink, args = (BLGPIO, AlarmOutput, 10,)).start()
     #Thread(target = BLCamera.RecordTenSecondVideo, args = (BLCamera,)).start() 
 
 def standby(inputPin, OutputPin):
@@ -108,6 +108,7 @@ print("""
 #reportPinConnectivity()
 #trigger()
 BLFRID.readRFID(BLFRID)
+trigger()
 
 
 while(False):
