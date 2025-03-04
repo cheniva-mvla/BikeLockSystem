@@ -6,6 +6,7 @@ import sys
 
 from Classes import BikeLockGPIO 
 from Classes import BikeLockCamera 
+from Classes import BikeLockRFID
 
 from Misc import CheckStatus
 from threading import Thread
@@ -14,6 +15,7 @@ from time import sleep
 #----- Variable Setup
 BLGPIO = BikeLockGPIO.BLGPIO #BikeLock GPIO 
 BLCamera = BikeLockCamera.BLCamera #BikeLock Camera
+BLFRID = BikeLockRFID.BLRFID #Bike Lock RFID
 BLSafteyCheckup = CheckStatus #Checks overall board functionality 
 
 #----- Constants 
@@ -24,7 +26,7 @@ shackleTwoOutput = 24
 shackleTwoInput = 22 
 
 #Physical Outouts
-AlarmOutput = 25
+AlarmOutput = 15
 LEDOutput = 17
 
 #Misc
@@ -73,6 +75,9 @@ def printInfo():
     print() #whitespace
 
     print(BLCamera.__str__(BLGPIO))
+    print() #whitespace
+    print(BLFRID.__str__(BLFRID))
+
 
 def reportPinConnectivity():
     print("Shackle wire one circut completed:" + str(standby(shackleOneInput, shackleOneOutput)))
@@ -96,7 +101,9 @@ def checkDetection():
 #printInfo()
 reportPinConnectivity()
 #trigger()
-while(True):
+BLFRID.readRFID(BLFRID)
+
+while(False):
     if detect: #trigger mode
         print("Alarm Triggered")
         trigger()

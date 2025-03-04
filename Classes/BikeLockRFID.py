@@ -8,17 +8,23 @@ else:
     pass
 
 rfid = SimpleMFRC522()
-
 bikeLockFobID = 785924227828
 bikeLockCardID = 703195382446
+class BLRFID:
+    #----- Init 
+    def __init__(self):
+        pass 
+    
+    #----- RFID Functions
+    def readRFID(self):
+        while True:
+            id, text = rfid.read()
+            if id == bikeLockFobID or id == bikeLockCardID: 
+                print("Acess Granted")
+                return True 
+            #print(id)
+            #print(text)
 
-def readRFID():
-    while True:
-        id, text = rfid.read()
-        if id == bikeLockFobID or id == bikeLockCardID: 
-            print("Acess Granted")
-            return 
-        print(id)
-        print(text)
-
-readRFID()
+#----- Misc
+    def __str__(self):
+        return "RFID CLASS"
