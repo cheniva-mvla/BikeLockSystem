@@ -26,7 +26,7 @@ shackleTwoOutput = 24
 shackleTwoInput = 22 
 
 #Physical Outouts
-AlarmOutput = 4
+AlarmOutput = 10
 LEDOutput = 17
 
 #Misc
@@ -42,13 +42,7 @@ standByTime = 2
 
 pins = {
     AlarmOutput: "Output", #Alarm
-    LEDOutput: "Output", #LED
 
-    shackleOneOutput: "Output", #Shackle 1 Output
-    shackleTwoOutput: "Output", #Shackle 2 Output
-
-    shackleOneInput: "Input", #Shackle 1 Input
-    shackleTwoInput: "Input", #Shackle 2 Input
 
     }
 
