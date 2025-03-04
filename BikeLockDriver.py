@@ -108,7 +108,6 @@ print("""
 #reportPinConnectivity()
 #trigger()
 BLFRID.readRFID(BLFRID)
-trigger()
 
 
 while(False):
