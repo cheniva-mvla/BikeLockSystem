@@ -41,7 +41,7 @@ standByTime = 2
 
 
 pins = {
-    AlarmOutput: "Output", #Alarm
+    AlarmOutput: "Input", #Alarm
   
     }
 
