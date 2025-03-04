@@ -53,7 +53,7 @@ pins = {
     shackleTwoInput: "Input", #Shackle 2 Input
 """
 #------ Instantiate Classes
-BLGPIO.__init__(BLGPIO, pins)
+#BLGPIO.__init__(BLGPIO, pins)
 
 #------ Status Check
 safetyCheck = False  
