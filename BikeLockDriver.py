@@ -19,18 +19,24 @@ BLFRID = BikeLockRFID.BLRFID #Bike Lock RFID
 BLSafteyCheckup = CheckStatus #Checks overall board functionality 
 
 #----- Constants 
-#Shackles
-shackleOneOutput = 23
-shackleOneInput = 27
-shackleTwoOutput = 24
-shackleTwoInput = 22 
+#Shackles with Board numbering
+'''
+Shackle One Output: GPIO 23 --> Board 16
+Shackle One Input: GPIO 27 --> Board 13
+Shackle Two Output: GPIO 24 --> Board 18
+Shackle Two Input: GPIO 22 --> Board 15
+'''
+SHACKLE_ONE_OUTPUT = 16
+SHACKLE_ONE_INPUT = 13
+SHACKLE_TWO_OUTPUT = 18
+SHACKLE_TWO_INPUT = 15 
 
 #Physical Outouts
-AlarmOutput = 10
-LEDOutput = 17
+ALARM_OUTPUT = 10
+LED_OUTPUT = 17 #in GPIO not in board
 
 #Misc
-RFIDKey = None #change later 
+RFID_KEY = None #change later 
 AccelerometorInput = None #change later 
 
 #FSM Vars
@@ -41,9 +47,11 @@ standByTime = 2
 
 
 pins = {
-    AlarmOutput: "Output", #Alarm
-
-
+    ALARM_OUTPUT: "Output", #Alarm
+    SHACKLE_ONE_OUTPUT: "Output",
+    SHACKLE_ONE_INPUT: "Input",
+    SHACKLE_TWO_OUTPUT: "Output",
+    SHACKLE_TWO_INPUT: "Input"
     }
 
 #------ Instantiate Classes
@@ -75,8 +83,8 @@ def printInfo():
 
 
 def reportPinConnectivity():
-    print("Shackle wire one circut completed:" + str(standby(shackleOneInput, shackleOneOutput)))
-    print("Shackle wire two circut completed:" + str(standby(shackleTwoInput, shackleTwoOutput)))
+    print("Shackle wire one circut completed:" + str(standby(SHACKLE_ONE_INPUT, SHACKLE_ONE_OUTPUT)))
+    print("Shackle wire two circut completed:" + str(standby(SHACKLE_TWO_INPUT, SHACKLE_TWO_OUTPUT)))
 
 def trigger(): 
     Thread(target = BLGPIO.blink, args = (BLGPIO, AlarmOutput, 10,)).start()
@@ -86,9 +94,9 @@ def standby(inputPin, OutputPin):
     return BLGPIO.detectCircut(BLGPIO, inputPin, OutputPin)
 
 def checkDetection():
-    if not standby(shackleOneInput, shackleOneOutput):
+    if not standby(SHACKLE_ONE_INPUT, SHACKLE_ONE_OUTPUT):
         return True
-    if not standby(shackleTwoInput, shackleTwoOutput):
+    if not standby(SHACKLE_TWO_INPUT, SHACKLE_TWO_OUTPUT):
         return True
     return False 
     
