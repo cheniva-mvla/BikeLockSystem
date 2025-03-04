@@ -44,13 +44,14 @@ pins = {
     AlarmOutput: "Output", #Alarm
     LEDOutput: "Output", #LED
 
+    }
+"""
     shackleOneOutput: "Output", #Shackle 1 Output
     shackleTwoOutput: "Output", #Shackle 2 Output
 
     shackleOneInput: "Input", #Shackle 1 Input
     shackleTwoInput: "Input", #Shackle 2 Input
-    }
-
+"""
 #------ Instantiate Classes
 BLGPIO.__init__(BLGPIO, pins)
 
@@ -98,10 +99,20 @@ def checkDetection():
     return False 
     
 #--------main loop----------
+
+print("""
+  ____  _   _ _   _ _   _ ___ _   _  ____ 
+ |  _ \| | | | \ | | \ | |_ _| \ | |/ ___|
+ | |_) | | | |  \| |  \| || ||  \| | |  _ 
+ |  _ <| |_| | |\  | |\  || || |\  | |_| |
+ |_| \_\\___/|_| \_|_| \_|___|_| \_|\____|                                   
+""")
+
 #printInfo()
 reportPinConnectivity()
 #trigger()
 BLFRID.readRFID(BLFRID)
+
 
 while(False):
     if detect: #trigger mode
