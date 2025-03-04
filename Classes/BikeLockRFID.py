@@ -17,9 +17,6 @@ def readRFID():
         id, text = rfid.read()
         print(id)
         print(text)
-        if id == bikeLockFobID or id == bikeLockCardID: 
-            print("Acess Granted")
-            return 
       
 
 readRFID()
