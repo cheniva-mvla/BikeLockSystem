@@ -26,7 +26,7 @@ shackleTwoOutput = 24
 shackleTwoInput = 22 
 
 #Physical Outouts
-AlarmOutput = 15
+AlarmOutput = 4
 LEDOutput = 17
 
 #Misc
