@@ -47,6 +47,7 @@ standByTime = 2
 
 
 pins = {
+    LED_OUTPUT: "Output",
     ALARM_OUTPUT: "Output", #Alarm
     SHACKLE_ONE_OUTPUT: "Output",
     SHACKLE_ONE_INPUT: "Input",
