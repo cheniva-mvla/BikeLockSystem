@@ -33,7 +33,7 @@ SHACKLE_TWO_INPUT = 15
 
 #Physical Outouts
 ALARM_OUTPUT = 10
-LED_OUTPUT = 17 #in GPIO not in board
+LED_OUTPUT = 11     
 
 #Misc
 RFID_KEY = None #change later 
@@ -87,7 +87,7 @@ def reportPinConnectivity():
     print("Shackle wire two circut completed:" + str(standby(SHACKLE_TWO_INPUT, SHACKLE_TWO_OUTPUT)))
 
 def trigger(): 
-    Thread(target = BLGPIO.blink, args = (BLGPIO, ALARM_OUTPUT, 10,)).start()
+    Thread(target = BLGPIO.blink, args = (BLGPIO, LED_OUTPUT, 10,)).start()
     #Thread(target = BLCamera.RecordTenSecondVideo, args = (BLCamera,)).start() 
 
 def standby(inputPin, OutputPin):
@@ -114,8 +114,8 @@ print("""
 
 #printInfo()
 #reportPinConnectivity()
-#trigger()
 BLFRID.readRFID(BLFRID)
+trigger()
 
 
 while(False):
