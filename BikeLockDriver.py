@@ -133,20 +133,20 @@ while (True) :
         
         if checkDetection(): 
             state = TRIGGER
-        if BLFRID.readRFID() and state != TRIGGER: 
+        if BLFRID.readRFID(BLFRID) and state != TRIGGER: 
             state = UNLOCKED 
     if state == TRIGGER: 
 
         print("TRIGGERED")
 
-        if BLFRID.readRFID():
+        if BLFRID.readRFID(BLFRID):
             state = UNLOCKED 
     if state == UNLOCKED: 
 
         print("UNLOCKED")
 
         if not checkDetection(): #Bike is locked 
-            if BLFRID.readRFID(): 
+            if BLFRID.readRFID(BLFRID): 
                 state = STANDBY
         
     sleep(standByTime)
