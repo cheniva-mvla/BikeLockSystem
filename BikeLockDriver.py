@@ -87,7 +87,7 @@ def reportPinConnectivity():
     print("Shackle wire two circut completed:" + str(standby(SHACKLE_TWO_INPUT, SHACKLE_TWO_OUTPUT)))
 
 def trigger(): 
-    Thread(target = BLGPIO.blink, args = (BLGPIO, AlarmOutput, 10,)).start()
+    Thread(target = BLGPIO.blink, args = (BLGPIO, ALARM_OUTPUT, 10,)).start()
     #Thread(target = BLCamera.RecordTenSecondVideo, args = (BLCamera,)).start() 
 
 def standby(inputPin, OutputPin):
