@@ -115,10 +115,27 @@ print("""
 
 #printInfo()
 #reportPinConnectivity()
-BLFRID.readRFID(BLFRID)
-trigger()
+#BLFRID.readRFID(BLFRID)
+#trigger()
 
+state = 0
+STANDBY = 0
+TRIGGER = 1
+UNLOCKED = 2
 
+detect = False 
+while (True) :
+    if state == STANDBY:
+        if checkDetection(): 
+            state = TRIGGER
+        if BLFRID.readRFID(): 
+            
+    if state == TRIGGER: 
+        pass 
+    if state == UNLOCKED: 
+        pass 
+
+"""
 while(False):
     if detect: #trigger mode
         print("Alarm Triggered")
@@ -137,7 +154,7 @@ while(False):
 
     sleep(standByTime)
     
-
+"""
 
 
 
