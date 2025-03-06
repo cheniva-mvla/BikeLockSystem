@@ -17,13 +17,12 @@ class BLRFID:
     
     #----- RFID Functions
     def readRFID(self):
-        while True:
-            id, text = rfid.read()
-            if id == bikeLockFobID or id == bikeLockCardID: 
-                print("Access Granted")
-                return True 
-            #print(id)
-            #print(text)
+        id, text = rfid.read()
+        if id == bikeLockFobID or id == bikeLockCardID: 
+            print("Access Granted")
+            return True 
+        #print(id)
+        #print(text)
 
 #----- Misc
     def __str__(self):
