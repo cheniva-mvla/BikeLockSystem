@@ -135,13 +135,13 @@ while (True) :
             state = TRIGGER
         if BLFRID.readRFID(BLFRID) and state != TRIGGER: 
             state = UNLOCKED 
-    if state == TRIGGER: 
+    elif state == TRIGGER: 
 
         print("TRIGGERED")
 
         if BLFRID.readRFID(BLFRID):
             state = UNLOCKED 
-    if state == UNLOCKED: 
+    elif state == UNLOCKED: 
 
         print("UNLOCKED")
 
