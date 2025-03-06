@@ -43,7 +43,7 @@ AccelerometorInput = None #change later
 alert = False
 detect = False
 reset = False
-standByTime = 2
+standByTime = 0.01
 
 
 pins = {
@@ -91,13 +91,13 @@ def trigger():
     Thread(target = BLGPIO.blink, args = (BLGPIO, LED_OUTPUT, 10,)).start()
     #Thread(target = BLCamera.RecordTenSecondVideo, args = (BLCamera,)).start() 
 
-def standby(inputPin, OutputPin):
+def detectShackleCircut(inputPin, OutputPin):
     return BLGPIO.detectCircut(BLGPIO, inputPin, OutputPin)
 
 def checkDetection():
-    if not standby(SHACKLE_ONE_INPUT, SHACKLE_ONE_OUTPUT):
+    if not detectShackleCircut(SHACKLE_ONE_INPUT, SHACKLE_ONE_OUTPUT):
         return True
-    if not standby(SHACKLE_TWO_INPUT, SHACKLE_TWO_OUTPUT):
+    if not detectShackleCircut(SHACKLE_TWO_INPUT, SHACKLE_TWO_OUTPUT):
         return True
     return False 
     
@@ -118,22 +118,38 @@ print("""
 #BLFRID.readRFID(BLFRID)
 #trigger()
 
+#--Variables
 state = 0
+
+#--Constants 
 STANDBY = 0
 TRIGGER = 1
 UNLOCKED = 2
 
-detect = False 
 while (True) :
     if state == STANDBY:
+
+        print("STANDBY")
+        
         if checkDetection(): 
             state = TRIGGER
-        if BLFRID.readRFID(): 
-            
+        if BLFRID.readRFID() and state != TRIGGER: 
+            state = UNLOCKED 
     if state == TRIGGER: 
-        pass 
+
+        print("TRIGGERED")
+
+        if BLFRID.readRFID():
+            state = UNLOCKED 
     if state == UNLOCKED: 
-        pass 
+
+        print("UNLOCKED")
+
+        if not checkDetection(): #Bike is locked 
+            if BLFRID.readRFID(): 
+                state = STANDBY
+        
+    sleep(standByTime)
 
 """
 while(False):

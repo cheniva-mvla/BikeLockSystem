@@ -21,6 +21,8 @@ class BLRFID:
         if id == bikeLockFobID or id == bikeLockCardID: 
             print("Access Granted")
             return True 
+        else:
+            return False 
         #print(id)
         #print(text)
 
