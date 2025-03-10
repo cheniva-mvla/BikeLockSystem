@@ -16,12 +16,14 @@ class BLRFID:
         pass 
     
     #----- RFID Functions
-    def readRFID(self):
+    def readRFID(self, driver):
         id = rfid.read()
         if id == bikeLockFobID or id == bikeLockCardID: 
             print("Access Granted")
+            driver.rfidResult = "pass"
             return True 
         else:
+            driver.rfidResult = "fail"
             return False 
         #print(id)
         #print(text)
