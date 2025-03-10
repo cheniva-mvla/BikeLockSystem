@@ -1,6 +1,6 @@
 #--------------MAIN DRIVER FUNCTIONALITY------------#
 #-----Libraries
-import sys
+import sys, queue 
 #sys.path.insert(1, '\git\BikeLockSystem\Classes')
 #sys.path.insert(2, '\git\BikeLockSystem\Misc')
 
@@ -105,7 +105,7 @@ def checkDetection():
 
 print("""
     #########################################
-    ____  _   _ _   _ _   _ ___ _   _  ____ 
+     ____  _   _ _   _ _   _ ___ _   _  ____ 
     |  _ \| | | | \ | | \ | |_ _| \ | |/ ___|
     | |_) | | | |  \| |  \| || ||  \| | |  _ 
     |  _ <| |_| | |\  | |\  || || |\  | |_| |
@@ -126,9 +126,10 @@ STANDBY = 0
 TRIGGER = 1
 UNLOCKED = 2
 
-while (True) :
-    if state == STANDBY:
+while (True):
+    RFIDThread.start()
 
+    if state == STANDBY:
         print("STANDBY")
         
         if checkDetection(): 
