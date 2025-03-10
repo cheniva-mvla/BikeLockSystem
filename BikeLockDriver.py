@@ -120,7 +120,7 @@ print("""
 
 #--Variables
 state = 0
-rfidResult = 0
+rfidResult = "fail"
 RFIDThread = Thread(target = BLRFID.readRFID, args = (BLRFID, self))
 #--Constants 
 STANDBY = 0
