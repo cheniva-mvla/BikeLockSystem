@@ -15,7 +15,7 @@ from time import sleep
 #----- Variable Setup
 BLGPIO = BikeLockGPIO.BLGPIO #BikeLock GPIO 
 BLCamera = BikeLockCamera.BLCamera #BikeLock Camera
-BLFRID = BikeLockRFID.BLRFID #Bike Lock RFID
+BLRFID = BikeLockRFID.BLRFID #Bike Lock RFID
 BLSafteyCheckup = CheckStatus #Checks overall board functionality 
 
 #----- Constants 
@@ -80,12 +80,12 @@ def printInfo():
 
     print(BLCamera.__str__(BLGPIO))
     print() #whitespace
-    print(BLFRID.__str__(BLFRID))
+    print(BLRFID.__str__(BLRFID))
 
 
 def reportPinConnectivity():
-    print("Shackle wire one circut completed:" + str(standby(SHACKLE_ONE_INPUT, SHACKLE_ONE_OUTPUT)))
-    print("Shackle wire two circut completed:" + str(standby(SHACKLE_TWO_INPUT, SHACKLE_TWO_OUTPUT)))
+    print("Shackle wire one circut completed:" + str(detectShackleCircut(SHACKLE_ONE_INPUT, SHACKLE_ONE_OUTPUT)))
+    print("Shackle wire two circut completed:" + str(detectShackleCircut(SHACKLE_TWO_INPUT, SHACKLE_TWO_OUTPUT)))
 
 def trigger(): 
     Thread(target = BLGPIO.blink, args = (BLGPIO, LED_OUTPUT, 10,)).start()
@@ -120,7 +120,7 @@ print("""
 
 #--Variables
 state = 0
-
+RFIDThread = Thread(target = BLRFID.readRFID, args = (BLRFID))
 #--Constants 
 STANDBY = 0
 TRIGGER = 1
@@ -133,20 +133,21 @@ while (True) :
         
         if checkDetection(): 
             state = TRIGGER
-        if BLFRID.readRFID(BLFRID) and state != TRIGGER: 
+        if BLRFID.readRFID(BLRFID) and state != TRIGGER: 
+            
             state = UNLOCKED 
     elif state == TRIGGER: 
 
         print("TRIGGERED")
 
-        if BLFRID.readRFID(BLFRID):
+        if BLRFID.readRFID(BLRFID):
             state = UNLOCKED 
     elif state == UNLOCKED: 
 
         print("UNLOCKED")
 
         if not checkDetection(): #Bike is locked 
-            if BLFRID.readRFID(BLFRID): 
+            if BLRFID.readRFID(BLRFID): 
                 state = STANDBY
         
     sleep(standByTime)
