@@ -118,43 +118,52 @@ print("""
 #BLFRID.readRFID(BLFRID)
 #trigger()
 
-#--Variables
-state = 0
-rfidResult = "fail"
-RFIDThread = Thread(target = BLRFID.readRFID, args = (BLRFID, self))
-#--Constants 
 STANDBY = 0
 TRIGGER = 1
 UNLOCKED = 2
+RFIDThread = Thread(target = BLRFID.readRFID, args = (BLRFID, self))
 
-while (True):
-    RFIDThread.start()
-    RFIDThread.join()
-    print(rfidResult)
+class BLDriver:
+    #--Variables
+    rfidResult = "fail"
+    state = 0
+    #--Constants 
+ 
+    #----- Init 
+    def __init__(self):
+        pass
 
-    if state == STANDBY:
-        print("STANDBY")
-        
-        if checkDetection(): 
-            state = TRIGGER
-        if BLRFID.readRFID(BLRFID) and state != TRIGGER: 
-            
-            state = UNLOCKED 
-    elif state == TRIGGER: 
+    def BikeLockSystem(self):
+        while (True):
+            RFIDThread.start()
+            RFIDThread.join()
+            print(self.rfidResult)
 
-        print("TRIGGERED")
+            if self.state == STANDBY:
+                print("STANDBY")
+                
+                if checkDetection(): 
+                    self.state = TRIGGER
+                if BLRFID.readRFID(BLRFID) and self.state != TRIGGER: 
+                    
+                    self.state = UNLOCKED 
+            elif self.state == TRIGGER: 
 
-        if BLRFID.readRFID(BLRFID):
-            state = UNLOCKED 
-    elif state == UNLOCKED: 
+                print("TRIGGERED")
 
-        print("UNLOCKED")
+                if BLRFID.readRFID(BLRFID):
+                    self.state = UNLOCKED 
+            elif self.state == UNLOCKED: 
 
-        if not checkDetection(): #Bike is locked 
-            if BLRFID.readRFID(BLRFID): 
-                state = STANDBY
-        
-    sleep(standByTime)
+                print("UNLOCKED")
+
+                if not checkDetection(): #Bike is locked 
+                    if BLRFID.readRFID(BLRFID): 
+                        self.state = STANDBY
+                
+            sleep(standByTime)
+
+BLDriver.BikeLockSystem(BLDriver)
 
 """
 while(False):
