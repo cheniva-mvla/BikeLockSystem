@@ -120,7 +120,8 @@ print("""
 
 #--Variables
 state = 0
-RFIDThread = Thread(target = BLRFID.readRFID, args = (BLRFID))
+rfidResult = 0
+RFIDThread = Thread(target = BLRFID.readRFID, args = (BLRFID, self))
 #--Constants 
 STANDBY = 0
 TRIGGER = 1
@@ -128,6 +129,8 @@ UNLOCKED = 2
 
 while (True):
     RFIDThread.start()
+    RFIDThread.join()
+    print(rfidResult)
 
     if state == STANDBY:
         print("STANDBY")
