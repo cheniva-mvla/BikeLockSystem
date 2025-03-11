@@ -121,48 +121,39 @@ print("""
 STANDBY = 0
 TRIGGER = 1
 UNLOCKED = 2
+DRIVER_STATE = 0
 RFIDThread = Thread(target = BLRFID.readRFID, args = (BLRFID))
 
-class BLDriver:
-    #--Variables
-    DRIVER_STATE = 0
-    #--Constants 
- 
-    #----- Init 
-    def __init__(self):
-        pass
-
-    def BikeLockSystem(self):
-        RFIDThread.start()
-        while (True):
-            print(BLRFID.LOCKED_STATE)
-            if self.DRIVER_STATE == STANDBY:
+def BikeLockSystem():
+    RFIDThread.start()
+    while (True):
+        print(BLRFID.LOCKED_STATE)
+        if DRIVER_STATE == STANDBY:
                 
-                print("STANDBY")
+            print("STANDBY")
                 
-                if checkDetection(): 
-                    self.DRIVER_STATE = TRIGGER
-                if BLRFID.LOCKED_STATE and self.DRIVER_STATE != TRIGGER: 
+            if checkDetection(): 
+                DRIVER_STATE = TRIGGER
+            if BLRFID.LOCKED_STATE and DRIVER_STATE != TRIGGER: 
                     
-                    self.DRIVER_STATE = UNLOCKED 
-            elif self.DRIVER_STATE == TRIGGER: 
+                DRIVER_STATE = UNLOCKED 
+        elif DRIVER_STATE == TRIGGER: 
 
-                print("TRIGGERED")
+            print("TRIGGERED")
 
-                if BLRFID.LOCKED_STATE:
-                    self.DRIVER_STATE = UNLOCKED 
-            elif self.DRIVER_STATE == UNLOCKED: 
+            if BLRFID.LOCKED_STATE:
+                DRIVER_STATE = UNLOCKED 
+        elif DRIVER_STATE == UNLOCKED: 
 
-                print("UNLOCKED")
+            print("UNLOCKED")
 
-                if not checkDetection(): #Bike is locked 
-                    if BLRFID.LOCKED_STATE: 
-                        self.DRIVER_STATE = STANDBY
+            if not checkDetection(): #Bike is locked 
+                if BLRFID.LOCKED_STATE: 
+                    DRIVER_STATE = STANDBY
                 
-            sleep(standByTime)
+        sleep(standByTime)
 
-
-BLDriver.BikeLockSystem(BLDriver)
+BikeLockSystem()
 
 """
 while(False):
