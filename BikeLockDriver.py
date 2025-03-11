@@ -118,14 +118,18 @@ print("""
 #BLFRID.readRFID(BLFRID)
 #trigger()
 
-STANDBY = 0
-TRIGGER = 1
-UNLOCKED = 2
-DRIVER_STATE = 0
-RFIDThread = Thread(target = BLRFID.readRFID, args = (BLRFID))
+
 
 def BikeLockSystem():
+    STANDBY = 0
+    TRIGGER = 1
+    UNLOCKED = 2
+    DRIVER_STATE = 0
+    
+    RFIDThread = Thread(target = BLRFID.readRFID, args = (BLRFID))
     RFIDThread.start()
+    RFIDThread.join()
+
     while (True):
         print(BLRFID.LOCKED_STATE)
         if DRIVER_STATE == STANDBY:
