@@ -12,7 +12,7 @@ bikeLockFobID = 785924227828
 bikeLockCardID = 703195382446
 
 class BLRFID:
-    LOCKED_STATE = False
+    LOCKED_STATE = TRUE
     #----- Init     
     def __init__(self):
         pass 
@@ -23,7 +23,7 @@ class BLRFID:
             id, text = rfid.read()
             if id == bikeLockFobID or id == bikeLockCardID: 
                 print("Access Granted")
-                self.LOCKED_STATE = True
+                self.LOCKED_STATE = not LOCKED_STATE
             else:
                 pass  
         
