@@ -128,6 +128,7 @@ def BikeLockSystem():
     Thread(target = BLRFID.readRFID, args = (BLRFID, )).start()
 
     while (True):
+        print(BLRFID.LOCKED_STATE)
         if DRIVER_STATE == STANDBY:
                 
             print("STANDBY")
