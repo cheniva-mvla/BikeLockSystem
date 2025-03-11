@@ -117,32 +117,31 @@ print("""
 #reportPinConnectivity()
 #BLFRID.readRFID(BLFRID)
 #trigger()
+STANDBY = 0
+TRIGGER = 1
+UNLOCKED = 2
+DRIVER_STATE = 0
 
 
 def BikeLockSystem():
-    STANDBY = 0
-    TRIGGER = 1
-    UNLOCKED = 2
-    DRIVER_STATE = 0
 
     Thread(target = BLRFID.readRFID, args = (BLRFID, )).start()
 
     while (True):
-        print(BLRFID.LOCKED_STATE)
         if DRIVER_STATE == STANDBY:
                 
             print("STANDBY")
                 
             if checkDetection(): 
                 DRIVER_STATE = TRIGGER
-            if BLRFID.LOCKED_STATE and DRIVER_STATE != TRIGGER: 
+            if not BLRFID.LOCKED_STATE and DRIVER_STATE != TRIGGER: 
                     
                 DRIVER_STATE = UNLOCKED 
         elif DRIVER_STATE == TRIGGER: 
 
             print("TRIGGERED")
 
-            if BLRFID.LOCKED_STATE:
+            if not BLRFID.LOCKED_STATE:
                 DRIVER_STATE = UNLOCKED 
         elif DRIVER_STATE == UNLOCKED: 
 
