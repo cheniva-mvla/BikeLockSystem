@@ -43,7 +43,7 @@ AccelerometorInput = None #change later
 alert = False
 detect = False
 reset = False
-standByTime = 0.01
+standByTime = 0.1
 
 
 pins = {
@@ -121,11 +121,10 @@ print("""
 STANDBY = 0
 TRIGGER = 1
 UNLOCKED = 2
-RFIDThread = Thread(target = BLRFID.readRFID, args = (BLRFID, self))
+RFIDThread = Thread(target = BLRFID.readRFID, args = (BLRFID))
 
 class BLDriver:
     #--Variables
-    rfidResult = "fail"
     state = 0
     #--Constants 
  
@@ -134,31 +133,32 @@ class BLDriver:
         pass
 
     def BikeLockSystem(self):
+        RFIDThread.start()
+        RFIDThread.join()
         while (True):
-            RFIDThread.start()
-            RFIDThread.join()
-            print(self.rfidResult)
+    
+            print(BLRFID.LOCKED_STATE)
 
             if self.state == STANDBY:
                 print("STANDBY")
                 
                 if checkDetection(): 
                     self.state = TRIGGER
-                if BLRFID.readRFID(BLRFID) and self.state != TRIGGER: 
+                if BLRFID.LOCKED_STATE and self.state != TRIGGER: 
                     
                     self.state = UNLOCKED 
             elif self.state == TRIGGER: 
 
                 print("TRIGGERED")
 
-                if BLRFID.readRFID(BLRFID):
+                if BLRFID.LOCKED_STATE:
                     self.state = UNLOCKED 
             elif self.state == UNLOCKED: 
 
                 print("UNLOCKED")
 
                 if not checkDetection(): #Bike is locked 
-                    if BLRFID.readRFID(BLRFID): 
+                    if BLRFID.LOCKED_STATE: 
                         self.state = STANDBY
                 
             sleep(standByTime)
