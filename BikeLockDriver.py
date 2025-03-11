@@ -154,7 +154,7 @@ def BikeLockSystem():
                 
         sleep(standByTime)
 
-#BikeLockSystem()
+BikeLockSystem()
 
 """
 while(False):
