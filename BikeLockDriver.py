@@ -117,14 +117,14 @@ print("""
 #reportPinConnectivity()
 #BLFRID.readRFID(BLFRID)
 #trigger()
-STANDBY = 0
-TRIGGER = 1
-UNLOCKED = 2
-DRIVER_STATE = 0
+
 
 
 def BikeLockSystem():
-
+    STANDBY = 0
+    TRIGGER = 1
+    UNLOCKED = 2
+    DRIVER_STATE = 0
     Thread(target = BLRFID.readRFID, args = (BLRFID, )).start()
 
     while (True):
