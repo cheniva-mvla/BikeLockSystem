@@ -134,7 +134,6 @@ class BLDriver:
 
     def BikeLockSystem(self):
         RFIDThread.start()
-        RFIDThread.join()
         while (True):
             print(BLRFID.LOCKED_STATE)
             if self.DRIVER_STATE == STANDBY:
@@ -163,7 +162,7 @@ class BLDriver:
             sleep(standByTime)
 
 
-BLRFID.readRFID(BLRFID)
+BLDriver.BikeLockSystem(BLDriver)
 
 """
 while(False):
