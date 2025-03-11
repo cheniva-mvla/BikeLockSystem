@@ -125,7 +125,7 @@ RFIDThread = Thread(target = BLRFID.readRFID, args = (BLRFID))
 
 class BLDriver:
     #--Variables
-    state = 0
+    DRIVER_STATE = 0
     #--Constants 
  
     #----- Init 
@@ -139,27 +139,27 @@ class BLDriver:
     
             print(BLRFID.LOCKED_STATE)
 
-            if self.state == STANDBY:
+            if self.DRIVER_STATE == STANDBY:
                 print("STANDBY")
                 
                 if checkDetection(): 
-                    self.state = TRIGGER
-                if BLRFID.LOCKED_STATE and self.state != TRIGGER: 
+                    self.DRIVER_STATE = TRIGGER
+                if BLRFID.LOCKED_STATE and self.DRIVER_STATE != TRIGGER: 
                     
-                    self.state = UNLOCKED 
-            elif self.state == TRIGGER: 
+                    self.DRIVER_STATE = UNLOCKED 
+            elif self.DRIVER_STATE == TRIGGER: 
 
                 print("TRIGGERED")
 
                 if BLRFID.LOCKED_STATE:
-                    self.state = UNLOCKED 
-            elif self.state == UNLOCKED: 
+                    self.DRIVER_STATE = UNLOCKED 
+            elif self.DRIVER_STATE == UNLOCKED: 
 
                 print("UNLOCKED")
 
                 if not checkDetection(): #Bike is locked 
                     if BLRFID.LOCKED_STATE: 
-                        self.state = STANDBY
+                        self.DRIVER_STATE = STANDBY
                 
             sleep(standByTime)
 
