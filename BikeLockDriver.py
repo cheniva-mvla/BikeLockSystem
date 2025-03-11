@@ -136,7 +136,7 @@ class BLDriver:
         RFIDThread.start()
         RFIDThread.join()
         while (True):
-            RFIDThread.run()
+            
             print(BLRFID.LOCKED_STATE)
             if self.DRIVER_STATE == STANDBY:
                 print("STANDBY")
