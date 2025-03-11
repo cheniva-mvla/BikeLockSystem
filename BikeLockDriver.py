@@ -138,7 +138,7 @@ class BLDriver:
         while (True):
     
             print(BLRFID.LOCKED_STATE)
-
+            BLRFID.readRFID(BLRFID)
             if self.DRIVER_STATE == STANDBY:
                 print("STANDBY")
                 
