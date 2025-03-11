@@ -163,7 +163,7 @@ class BLDriver:
             sleep(standByTime)
 
 
-BLDriver.BikeLockSystem(BLDriver)
+BLRFID.readRFID(BLRFID)
 
 """
 while(False):
