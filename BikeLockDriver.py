@@ -127,10 +127,10 @@ def BikeLockSystem():
 
     DRIVER_STATE = 0
     
-    UNLOCK_TIMER = 0
+    unlockTimer = 0
     UNLOCK_TIME = 10 #lock can only be unlocked after 10 seconds. 
     UNLOCK_TIMER_BOUNDS = UNLOCK_TIME/standByTime 
-    CAN_UNLOCK = False
+    canUnlock = False
 
     Thread(target = BLRFID.readRFID, args = (BLRFID, )).start()
 
@@ -142,11 +142,11 @@ def BikeLockSystem():
                 
             if checkDetection(): 
                 DRIVER_STATE = TRIGGER
-            if not BLRFID.LOCKED_STATE and DRIVER_STATE != TRIGGER and CAN_UNLOCK: 
+            if not BLRFID.LOCKED_STATE and DRIVER_STATE != TRIGGER and canUnlock: 
                 DRIVER_STATE = UNLOCKED 
                 
-                UNLOCK_TIMER = 0
-                CAN_UNLOCK = False
+                unlockTimer = 0
+                canUnlock = False
         elif DRIVER_STATE == TRIGGER: 
 
             print("TRIGGERED")
@@ -162,14 +162,14 @@ def BikeLockSystem():
                 if BLRFID.LOCKED_STATE and CAN_UNLOCK: 
                     DRIVER_STATE = STANDBY
                    
-                    UNLOCK_TIMER = 0
-                    CAN_UNLOCK = False
+                    unlockTimer = 0
+                    canUnlock = False
 
                 
         sleep(standByTime)
-        UNLOCK_TIMER += 1
-        if UNLOCK_TIMER >= UNLOCK_TIMER_BOUNDS: 
-            CAN_UNLOCK = True
+        unlockTimer += 1
+        if unlockTimer >= UNLOCK_TIMER_BOUNDS: 
+            canUnlock = True
             print("Bike can be unlocked")
 
 BikeLockSystem()
