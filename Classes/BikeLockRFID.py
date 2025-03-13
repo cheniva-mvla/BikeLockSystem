@@ -19,6 +19,7 @@ class BLRFID:
     
     #----- RFID Functions
     def readRFID(self):
+        print("Thread Runsning")
         while True: 
             id, text = rfid.read()
             if id == bikeLockFobID or id == bikeLockCardID: 
