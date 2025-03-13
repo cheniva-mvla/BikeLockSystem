@@ -159,7 +159,7 @@ def BikeLockSystem():
             print("UNLOCKED")
 
             if not checkDetection(): #Bike is locked 
-                if BLRFID.LOCKED_STATE and CAN_UNLOCK: 
+                if BLRFID.LOCKED_STATE and canUnlock: 
                     DRIVER_STATE = STANDBY
                    
                     unlockTimer = 0
