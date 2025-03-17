@@ -103,22 +103,16 @@ def checkDetection():
     
 #--------main loop----------
 
-print("""
-    #########################################
-     ____  _   _ _   _ _   _ ___ _   _  ____ 
-    |  _ \| | | | \ | | \ | |_ _| \ | |/ ___|
-    | |_) | | | |  \| |  \| || ||  \| | |  _ 
-    |  _ <| |_| | |\  | |\  || || |\  | |_| |
-    |_| \_\\___/|_| \_|_| \_|___|_| \_|\____|        
-    #########################################                           
+print(
+"""
+#########################################
+_____  _   _ _   _ _   _ ___ _   _  ____ 
+|  _ \| | | | \ | | \ | |_ _| \ | |/ ___|
+| |_) | | | |  \| |  \| || ||  \| | |  _ 
+|  _ <| |_| | |\  | |\  || || |\  | |_| |
+|_| \_\\___/|_| \_|_| \_|___|_| \_|\____|        
+#########################################                           
 """)
-
-#printInfo()
-#reportPinConnectivity()
-#BLFRID.readRFID(BLFRID)
-#trigger()
-
-
 
 def BikeLockSystem():
     STANDBY = 0
@@ -173,7 +167,12 @@ def BikeLockSystem():
             print("Bike can be unlocked")
 
 BLRFID.readRFID(BLRFID)
+
 #BikeLockSystem()
+#printInfo()
+#reportPinConnectivity()
+#BLFRID.readRFID(BLFRID)
+#trigger()
 
 """
 while(False):
@@ -190,8 +189,6 @@ while(False):
         alert = False
         detect = False
     reportPinConnectivity()
-
-
     sleep(standByTime)
     
 """
