@@ -166,9 +166,9 @@ def BikeLockSystem():
             canUnlock = True
             print("Bike can be unlocked")
 
-BLRFID.readRFID(BLRFID)
+#BLRFID.readRFID(BLRFID)
 
-#BikeLockSystem()
+BikeLockSystem()
 #printInfo()
 #reportPinConnectivity()
 #BLFRID.readRFID(BLFRID)
