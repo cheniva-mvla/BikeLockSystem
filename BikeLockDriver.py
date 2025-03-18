@@ -89,7 +89,7 @@ def reportPinConnectivity():
 
 def trigger(): 
     Thread(target = BLGPIO.blink, args = (BLGPIO, LED_OUTPUT, 10,)).start()
-    Thread(target = BLCamera.RecordTenSecondVideo, args = (BLCamera,)).start() 
+    Thread(target = BLCamera.RecordTenSecondVideo, args = (BLCamera, )).start() 
 
 def detectShackleCircut(inputPin, OutputPin):
     return BLGPIO.detectCircut(BLGPIO, inputPin, OutputPin)

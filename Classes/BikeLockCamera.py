@@ -26,7 +26,7 @@ class BLCamera:
 #----- Logic Functions
     def RecordTenSecondVideo(self): #records a 10 second video
         if safeLock:
-            self.picam2.start_preview(Preview)
+            self.picam2.start_preview(Preview.QTGL)
 
             #preview_config = picam2.create_preview_configuration()
             #picam2.configure(preview_config)
