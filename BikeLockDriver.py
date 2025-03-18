@@ -119,6 +119,8 @@ def BikeLockSystem():
     TRIGGER = 1
     UNLOCKED = 2
 
+    TRIGGERED = False  
+
     DRIVER_STATE = 0
     
     unlockTimer = 0
@@ -145,6 +147,9 @@ def BikeLockSystem():
 
             print("TRIGGERED")
 
+            if not TRIGGERED:
+                trigger()
+
             if not BLRFID.LOCKED_STATE:
                 DRIVER_STATE = UNLOCKED 
 
@@ -158,6 +163,7 @@ def BikeLockSystem():
                    
                     unlockTimer = 0
                     canUnlock = False
+                    TRIGGERED = False 
 
                 
         sleep(standByTime)
