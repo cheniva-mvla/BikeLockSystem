@@ -170,6 +170,7 @@ def BikeLockSystem():
         sleep(standByTime)
         unlockTimer += 1
         if unlockTimer >= UNLOCK_TIMER_BOUNDS: 
+            BLRFID.LOCKED_STATE = False
             canUnlock = True
             print("Bike can be unlocked")
 
