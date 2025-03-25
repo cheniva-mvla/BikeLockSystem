@@ -31,7 +31,7 @@ class BLCamera:
             #preview_config = picam2.create_preview_configuration()
             #picam2.configure(preview_config)
 
-            self.picam2.start_and_record_video("TestBikeLockVideo.mp4", duration = 10, show_preview = True) 
+            self.picam2.start_and_record_video("TestBikeLockVideo.mp4", duration = 30, show_preview = True) 
             self.picam2.close()
 
 #----- Misc
