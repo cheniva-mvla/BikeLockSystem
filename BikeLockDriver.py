@@ -149,7 +149,7 @@ def BikeLockSystem():
 
             if not TRIGGERED:
                 TRIGGERED = True
-                trigger()
+                #trigger()
 
             if not BLRFID.LOCKED_STATE:
                 DRIVER_STATE = UNLOCKED 
