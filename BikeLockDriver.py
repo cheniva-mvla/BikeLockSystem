@@ -183,7 +183,7 @@ Current Tasks:
 - Ensure that code is efficient. 
 '''
 #BLRFID.readRFID(BLRFID)
-#BikeLockSystem()
+BikeLockSystem()
 #printInfo()
 #reportPinConnectivity()
 #trigger()
