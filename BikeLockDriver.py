@@ -177,12 +177,16 @@ def BikeLockSystem():
 '''
 Address issue: if the tag is tapped twice during the 10 second interval, the read information saves and the bike will be unlocked after the time delay.
 This may or  may not cause interference between states in the FSM. 
+
+Current Tasks:
+- Make Pi run single Application on boot
+- Ensure that code is efficient. 
 '''
 #BLRFID.readRFID(BLRFID)
 #BikeLockSystem()
 #printInfo()
 #reportPinConnectivity()
-trigger()
+#trigger()
 
 """
 while(False):
