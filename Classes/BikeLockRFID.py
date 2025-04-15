@@ -22,7 +22,6 @@ class BLRFID:
         while True: 
             id, text = rfid.read()
             if id == bikeLockFobID or id == bikeLockCardID: 
-                print("Access Granted")
                 self.LOCKED_STATE = not self.LOCKED_STATE
             else:
                 pass  

@@ -134,7 +134,6 @@ def BikeLockSystem():
         print(BLRFID.LOCKED_STATE)
         if DRIVER_STATE == STANDBY:
                 
-            print("STANDBY")
                 
             if checkDetection(): 
                 DRIVER_STATE = TRIGGER
@@ -145,7 +144,6 @@ def BikeLockSystem():
                 canUnlock = False
         elif DRIVER_STATE == TRIGGER: 
 
-            print("TRIGGERED")
 
             if not TRIGGERED:
                 TRIGGERED = True
@@ -156,7 +154,6 @@ def BikeLockSystem():
 
         elif DRIVER_STATE == UNLOCKED: 
 
-            print("UNLOCKED")
 
             if not checkDetection(): #Bike is locked 
                 if BLRFID.LOCKED_STATE and canUnlock: 
@@ -171,7 +168,6 @@ def BikeLockSystem():
         unlockTimer += 1
         if unlockTimer >= UNLOCK_TIMER_BOUNDS: 
             canUnlock = True
-            print("Bike can be unlocked")
 
 
 '''
