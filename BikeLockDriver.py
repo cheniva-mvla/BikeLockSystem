@@ -57,8 +57,9 @@ pins = {
 
 #------ Instantiate Classes
 BLGPIO.__init__(BLGPIO, pins)
+BLCamera.__init__(BLCamera)
 
-#------ Status Check
+#------ Status Check (Debugging)
 safetyCheck = False  
 if safetyCheck: 
     Thread(target = BLSafteyCheckup.checkPins, args = (10,)).start()
@@ -66,6 +67,7 @@ if safetyCheck:
 
 #================ Logic =================#
 #------ Functions
+#Debugging
 def printInfo():
     #- safeLock check. True = On; False = Off
     print("GPIO safeLock: " + str(not BLGPIO.getSafeLock(BLGPIO)))
@@ -82,14 +84,14 @@ def printInfo():
     print() #whitespace
     print(BLRFID.__str__(BLRFID))
 
-
+#Debugging
 def reportPinConnectivity():
     print("Shackle wire one circut completed:" + str(detectShackleCircut(SHACKLE_ONE_INPUT, SHACKLE_ONE_OUTPUT)))
     print("Shackle wire two circut completed:" + str(detectShackleCircut(SHACKLE_TWO_INPUT, SHACKLE_TWO_OUTPUT)))
 
 def trigger(): 
     Thread(target = BLGPIO.blink, args = (BLGPIO, LED_OUTPUT, 10,)).start()
-    Thread(target = BLCamera.RecordTenSecondVideo, args = (BLCamera, )).start() 
+    Thread(target = BLCamera.TakePicture, args = (BLCamera, )).start() 
 
 def detectShackleCircut(inputPin, OutputPin):
     return BLGPIO.detectCircut(BLGPIO, inputPin, OutputPin)
@@ -131,9 +133,9 @@ def BikeLockSystem():
     Thread(target = BLRFID.readRFID, args = (BLRFID, )).start()
 
     while (True):
-        print(BLRFID.LOCKED_STATE)
-        if DRIVER_STATE == STANDBY:
-                
+        if DRIVER_STATE == STANDBY:  
+
+            print("STANDBY")
                 
             if checkDetection(): 
                 DRIVER_STATE = TRIGGER
@@ -143,7 +145,7 @@ def BikeLockSystem():
                 unlockTimer = 0
                 canUnlock = False
         elif DRIVER_STATE == TRIGGER: 
-
+            print("TRIGGER")
 
             if not TRIGGERED:
                 TRIGGERED = True
@@ -153,7 +155,7 @@ def BikeLockSystem():
                 DRIVER_STATE = UNLOCKED 
 
         elif DRIVER_STATE == UNLOCKED: 
-
+            print("UNLOCKED")
 
             if not checkDetection(): #Bike is locked 
                 if BLRFID.LOCKED_STATE and canUnlock: 
@@ -183,25 +185,5 @@ BikeLockSystem()
 #printInfo()
 #reportPinConnectivity()
 #trigger()
-
-"""
-while(False):
-    if detect: #trigger mode
-        print("Alarm Triggered")
-        trigger()
-        alert = True
-        detect = False
-    elif not alert: #standby mode
-        print("Standby")
-        detect = checkDetection() #if standby is false, no alarm should be raised and the circut is completed. True if circut is broken. 
-        print("Detect Status: " + str(detect))
-    if reset:
-        alert = False
-        detect = False
-    reportPinConnectivity()
-    sleep(standByTime)
-    
-"""
-
 
 
