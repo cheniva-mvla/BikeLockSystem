@@ -5,7 +5,7 @@ import sys, queue
 #sys.path.insert(2, '\git\BikeLockSystem\Misc')
 
 from Classes import BikeLockGPIO 
-from Classes import BikeLockCamera 
+#from Classes import BikeLockCamera 
 from Classes import BikeLockRFID
 
 from Misc import CheckStatus
@@ -14,7 +14,7 @@ from time import sleep
 
 #----- Variable Setup
 BLGPIO = BikeLockGPIO.BLGPIO #BikeLock GPIO 
-BLCamera = BikeLockCamera.BLCamera #BikeLock Camera
+#BLCamera = BikeLockCamera.BLCamera #BikeLock Camera
 BLRFID = BikeLockRFID.BLRFID #Bike Lock RFID
 BLSafteyCheckup = CheckStatus #Checks overall board functionality 
 
@@ -37,7 +37,7 @@ LED_OUTPUT = 11
 
 #Misc
 RFID_KEY = None #change later 
-AccelerometorInput = None #change later 
+#AccelerometorInput = None #change later 
 
 #FSM Vars
 alert = False
@@ -57,13 +57,13 @@ pins = {
 
 #------ Instantiate Classes
 BLGPIO.__init__(BLGPIO, pins)
-BLCamera.__init__(BLCamera)
+#BLCamera.__init__(BLCamera)
 
 #------ Status Check (Debugging)
 safetyCheck = False  
 if safetyCheck: 
     Thread(target = BLSafteyCheckup.checkPins, args = (10,)).start()
-    Thread(target = BLSafteyCheckup.record10SecondVideo).start()
+    #Thread(target = BLSafteyCheckup.record10SecondVideo).start()
 
 #================ Logic =================#
 #------ Functions
@@ -71,7 +71,7 @@ if safetyCheck:
 def printInfo():
     #- safeLock check. True = On; False = Off
     print("GPIO safeLock: " + str(not BLGPIO.getSafeLock(BLGPIO)))
-    print("Camera safeLock: " + str(not BLCamera.getSafeLock(BLGPIO)))
+    #print("Camera safeLock: " + str(not BLCamera.getSafeLock(BLGPIO)))
     print() #whitespace
 
     #- print out information
@@ -80,7 +80,7 @@ def printInfo():
     print(BLGPIO.getPins(BLGPIO))
     print() #whitespace
 
-    print(BLCamera.__str__(BLGPIO))
+    #print(BLCamera.__str__(BLGPIO))
     print() #whitespace
     print(BLRFID.__str__(BLRFID))
 
@@ -91,7 +91,7 @@ def reportPinConnectivity():
 
 def trigger(): 
     Thread(target = BLGPIO.blink, args = (BLGPIO, LED_OUTPUT, 10,)).start()
-    Thread(target = BLCamera.TakePicture, args = (BLCamera, )).start() 
+    #Thread(target = BLCamera.TakePicture, args = (BLCamera, )).start() 
 
 def detectShackleCircut(inputPin, OutputPin):
     return BLGPIO.detectCircut(BLGPIO, inputPin, OutputPin)
