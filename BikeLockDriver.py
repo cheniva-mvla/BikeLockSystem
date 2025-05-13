@@ -16,7 +16,7 @@ from time import sleep
 BLGPIO = BikeLockGPIO.BLGPIO #BikeLock GPIO 
 #BLCamera = BikeLockCamera.BLCamera #BikeLock Camera
 BLRFID = BikeLockRFID.BLRFID #Bike Lock RFID
-BLSafteyCheckup = CheckStatus #Checks overall board functionality 
+BLSafetyCheckup = CheckStatus #Checks overall board functionality 
 
 #----- Constants 
 #Shackles with Board numbering
