@@ -57,7 +57,7 @@ pins = {
 
 #------ Instantiate Classes
 BLGPIO.__init__(BLGPIO, pins)
-BLCamera.__init__(BLCamera)
+#BLCamera.__init__(BLCamera)
 
 #------ Status Check (Debugging)
 safetyCheck = False  
